@@ -8,14 +8,14 @@ target_num = random.randrange(99)
 # Primary Game Function
 def guess_game(target):
     i = 0
-    while i < 1:
+    while True:
         # User Inputs number
         guess = input("Enter your guess integer number between 0 and 99: ")
+        #TODO validate user data entry.
         # Machine returns Guess number and higher, lower or Correct!
         if int(guess) == target:
             print("Guess " + guess + " is Correct!")
-            i = i + 1
-            return
+            break
         if int(guess) > target:
             print("Guess " + guess + " is High")
         else:
