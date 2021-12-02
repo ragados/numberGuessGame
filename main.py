@@ -3,23 +3,35 @@
 import random
 
 # Machine determines a random number between 0 and 99
-target_num = random.randrange(99)
+target_num = random.randrange(100)
+
 
 # Primary Game Function
 def guess_game(target):
-    i = 0
     while True:
         # User Inputs number
+        invalid = False
+        numerals = ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
         guess = input("Enter your guess integer number between 0 and 99: ")
-        #TODO validate user data entry.
+        # Data entry validation - Had trouble with the escaping here.
+        for char in range(len(guess)):
+            if guess[char] not in numerals:
+                invalid = True
+        if invalid == True:
+            print("Entry is not a valid number. Please try again.")
         # Machine returns Guess number and higher, lower or Correct!
-        if int(guess) == target:
-            print("Guess " + guess + " is Correct!")
-            break
-        if int(guess) > target:
-            print("Guess " + guess + " is High")
         else:
-            print("Guess " + guess + " is Low")
+            guess_num = int(guess)
+            if guess_num > 99:
+                print("Guess outside of stated range. Please try again.")
+            elif guess_num == target:
+                print("Guess " + guess + " is Correct!")
+                break
+            elif guess_num > target:
+                print("Guess " + guess + " is High")
+            else:
+                print("Guess " + guess + " is Low")
+
 
 print(target_num)
 guess_game(target_num)
